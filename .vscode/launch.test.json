@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "blog",
+                "projectName": "blog",
+                "workingDirectory": "c:\\Users\\solar\\GitHub\\blog",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "blog",
+                "projectName": "blog",
+                "workingDirectory": "c:\\Users\\solar\\GitHub\\blog",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
