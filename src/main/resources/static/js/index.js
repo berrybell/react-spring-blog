@@ -5,6 +5,8 @@ import { AddPost } from "./AddPost";
 
 import "../css/styles.css";
 
+const BASE_URL = "http://localhost:8080/api";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -20,42 +22,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // fetch("https://jsonplaceholder.typicode.com/posts")
-    //   .then(r => r.json())
-    //   .then(r => {
-    //     this.setState({
-    //       posts: r
-    //     });
-    //   });
-
-    const r = [
-      {
-        timestamp: 1443133497566,
-        timeString: "25.9.2015",
-        title: "Post 1",
-        body:
-          "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-      },
-      {
-        timestamp: 1543134498566,
-        timeString: "25.11.2018",
-        title: "Post 2",
-        body:
-          "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-      }
-    ];
-
-    r.sort((a, b) => {
-      return a.timestamp - b.timestamp;
-    });
-
-    this.setState({
-      posts: r
-    });
+    fetch(`${BASE_URL}/posts`)
+      .then(r => r.json())
+      .then(r => {
+        const posts = r.sort((a, b) => {
+          return a.timestamp - b.timestamp;
+        });
+        this.setState({
+          posts
+        });
+      });
   }
 
   handleChange = e => {
-    //do something
     const name = e.target.name;
     this.setState({ [name]: e.target.value });
   };
@@ -69,7 +48,6 @@ class App extends Component {
   };
 
   savePost = e => {
-    //do something
     const timestamp = Date.now();
     const newPost = {
       title: this.state.title,
@@ -81,11 +59,38 @@ class App extends Component {
     posts.push(newPost);
     this.setState({ posts });
     this.toggleAddPost();
+    //Send POST request to back end
+    fetch(`${BASE_URL}/posts/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        timestamp: newPost.timestamp / 1000,
+        title: newPost.title,
+        body: newPost.body
+      })
+    })
+      .then(data => {
+        console.log("Request success: ", data);
+      })
+      .catch(error => {
+        console.log("Request failure: ", error);
+      });
   };
 
   deletePost = key => {
     const posts = this.state.posts.filter(x => x.timestamp !== key);
     this.setState({ posts });
+    //Send DELETE request to back end
+      method: "DELETE"
+    })
+      .then(data => {
+        console.log("Request success: ", data);
+      })
+      .catch(error => {
+        console.log("Request failure: ", error);
+      });
   };
 
   toggleAddPost = () => {
@@ -108,11 +113,7 @@ class App extends Component {
         ) : null}
         {this.state.posts.map(post => {
           return (
-            <BlogPost
-              key={post.timestamp}
-              {...post}
-              deletePost={this.deletePost}
-            />
+            <BlogPost key={post.id} {...post} deletePost={this.deletePost} />
           );
         })}
       </div>
