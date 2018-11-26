@@ -99,20 +99,24 @@ class App extends Component {
   };
 
   render() {
+    const { posts, addPost } = this.state;
     return (
       <div className="App">
         <h1>Blog</h1>
         <button className="button-primary" onClick={this.toggleAddPost}>
           Add new post
         </button>
-        {this.state.addPost ? (
+        {addPost ? (
           <AddPost
             savePost={this.savePost}
             toggleEditor={this.toggleAddPost}
             handleChange={this.handleChange}
           />
         ) : null}
-        {this.state.posts.map(post => {
+        {posts.length > 0 || addPost ? null : (
+          <p>Nothing here yet. Go write something cool!</p>
+        )}
+        {posts.map(post => {
           return (
             <BlogPost key={post.id} {...post} deletePost={this.deletePost} />
           );
