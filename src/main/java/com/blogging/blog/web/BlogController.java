@@ -20,7 +20,7 @@ import com.blogging.blog.repo.BlogMongoRepository;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("*")
+@RequestMapping("/api")
 public class BlogController {
 	@Autowired
 	BlogMongoRepository blogRepository;
