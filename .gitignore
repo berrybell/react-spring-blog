@@ -1,5 +1,7 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
+node_modules
+.vscode
 
 ### STS ###
 .apt_generated
@@ -23,3 +25,5 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+src/main/resources/static/built/bundle.js
+src/main/resources/static/built/bundle.js.map
