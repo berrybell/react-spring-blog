@@ -1,0 +1,29 @@
+.App {
+  font-family: sans-serif;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.blog__post,
+.blog__addpost {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 20px 0;
+  border: 1px solid rgba(183, 183, 183, 0.5);
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 10px 9px 0px rgba(183, 183, 183, 0.75);
+  -moz-box-shadow: 0px 10px 9px 0px rgba(183, 183, 183, 0.75);
+  box-shadow: 0px 10px 9px 0px rgba(183, 183, 183, 0.75);
+}
+
+.button {
+  align-self: flex-end;
+  margin: 10px 5px 10px 0;
+}
