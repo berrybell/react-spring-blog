@@ -4,7 +4,9 @@ A sample CR~~U~~D application built with React, Spring and MongoDB.
 
 ## Installation
 
-To compile the package into an executable JAR and start it, open the folder in your terminal and run the following commands:
+To run this, you need to have an accessible MongoDB instance that you can connect to. To get started, visit [MongoDB's official tutorial](https://docs.mongodb.com/manual/).
+
+Once you're done, clone this to your computer. To compile the package into an executable JAR and start it, open the folder in your terminal and run the following commands:
 
 ```
 mvn package -DskipTests
