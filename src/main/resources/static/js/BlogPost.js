@@ -16,7 +16,7 @@ export class BlogPost extends Component {
   }
 
   render() {
-    const { title, body, timestamp, timeString, deletePost } = this.props;
+    const { title, body, id, timeString, deletePost } = this.props;
     const { visible } = this.state;
 
     return (
@@ -34,7 +34,7 @@ export class BlogPost extends Component {
           <button className="button" onClick={this.togglePost}>
             {visible ? "Hide" : "View"}
           </button>
-          <button className="button" onClick={() => deletePost(timestamp)}>
+          <button className="button" onClick={() => deletePost(id)}>
             Delete
           </button>
         </div>

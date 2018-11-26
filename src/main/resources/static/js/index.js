@@ -80,9 +80,10 @@ class App extends Component {
   };
 
   deletePost = key => {
-    const posts = this.state.posts.filter(x => x.timestamp !== key);
+    const posts = this.state.posts.filter(x => x.id !== key);
     this.setState({ posts });
     //Send DELETE request to back end
+    fetch(`${BASE_URL}/posts/${key}`, {
       method: "DELETE"
     })
       .then(data => {
