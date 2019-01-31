@@ -32,7 +32,8 @@ public class BlogController {
 
 	@PostMapping("/posts/create")
 	public BlogPost createPost(@Valid @RequestBody BlogPost blogpost) {
-		return blogRepository.save(blogpost);
+		blogRepository.save(blogpost);
+		return blogpost;
 	}
 
 	@GetMapping("/posts/{id}")

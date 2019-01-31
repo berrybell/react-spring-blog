@@ -55,9 +55,6 @@ class App extends Component {
       timestamp: timestamp,
       timeString: this.convertTimestamp(timestamp)
     };
-    const posts = [...this.state.posts];
-    posts.push(newPost);
-    this.setState({ posts });
     this.toggleAddPost();
     //Send POST request to back end
     fetch(`${BASE_URL}/posts/create`, {
@@ -71,8 +68,12 @@ class App extends Component {
         body: newPost.body
       })
     })
+      .then(data => data.json())
       .then(data => {
         console.log("Request success: ", data);
+        const posts = [...this.state.posts];
+        posts.push(data);
+        this.setState({ posts });
       })
       .catch(error => {
         console.log("Request failure: ", error);
